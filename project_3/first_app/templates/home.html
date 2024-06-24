@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is first_app homepage</h1>
+    <h2>Name: {{name}}</h2>
+    <h2>Age: {{Age}}</h2>
+    <h2>list: {{list}}</h2>
+
+       <!-- Conditionail Statement -->
+    
+    {% if Age >= 20 %}
+    <h4>You will get</h4>
+    {% elif Age >= 10 and Age <= 19 %}
+    <h4>you will not get </h4>
+    {% else %}
+    <h4>You are an child</h4>
+    {% endif %}
+
+    {{list}}
+    <h5>{{ list | join:" - " }}</h5>
+
+    <h1>{{ birthday | date:"D d M Y" }}</h1>
+    <h1>{{"Python is Fun" | cut:" "}}</h1>
+    <h1>{{ val | length }}</h1>
+    <h1>{{ 'Happy coding is' | truncatechars:7 }}</h1>
+    <h1> {{ 'Happy coding is' | truncatewords:3 }}</h1>
+
+    
+
+    
+
+    <!-- For Loop -->
+    {% for i in courses %}
+    <h3>{{i.id}}  {{i.name }}  {{i.fee}}</h3>
+    {% endfor %}
+</body>
+</html>
