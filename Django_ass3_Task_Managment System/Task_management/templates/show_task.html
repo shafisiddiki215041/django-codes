@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center p-5">Show here</h1>
+<div class="d-flex flex-wrap justify-content-center">
+{% for tsk in task %}
+<div class="px-2 mb-2">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{tsk.id}}</h5>
+            <h5 class="card-title">{{tsk.taskTitle}}</h5>
+
+            <p class="card-text">{{tsk.taskDescription}}</p>
+            <p class="card-text">Release Date: {{tsk.Task_Assign_Date}}</p>
+
+            {% for t in tsk.task_category.all %}
+            <button class="btn btn-danger btn-sm m-1" disabled>{{t.name}}</button>
+            {% endfor %}
+
+            <div>
+                {% if tsk.is_completed %}
+                <button class="btn btn-secondary" disabled>Completed</button>
+                {% else %}
+                <a href="{% url 'edit' tsk.id %}" class=" btn btn-warning">Edit</a>
+                <a href="{% url 'delete' tsk.id %}" class="btn btn-warning ">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
