@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center">Hi!! {{name.first_name}} {{name.last_name}}</h1>
+<div class="text-center" >
+    <a  class="btn btn-warning mb-3" href="{% url 'pass_change_withouth' %}"> Click Here!!=>> Change Your Password Without Old Password</a>
+    <p><a  class="btn btn-warning" href="{% url 'pass_change_with' %}"> Click Here!!=>> Change Your Password With Old Password</a></p>
+</div>
+
+{% endblock  %}
