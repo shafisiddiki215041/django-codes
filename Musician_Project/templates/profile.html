@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center p-5">
+    <a class="btn btn-warning" href="{% url 'add_musician' %}">Add Musician</a>
+
+    <a class="btn btn-warning" href="{% url 'add_album' %}">Add Album</a>
+
+</div>
+<div class="d-flex card m-2 justify-content-center w-100 align-items-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Musician Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Album Rating</th>
+                <th scope="col">Instrument Type</th>
+                <th scope="col">Album Name</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in albums %}
+            <tr>
+                <td>{{m.musician.id}}</td>
+                <td><a class="text-decoration-none" href="{% url 'edit_musician_name' m.musician.id %}">{{m.musician.First_name}}</a></td>
+                <td>{{m.musician.Email}}</td>
+                <td>{{m.rating}}</td>
+                <td>{{m.musician.favo_instrument}}</td>
+                <td>{{m.album_name}}</td>
+                <td>{{m.Release_date}}</td>
+                <td><a href="{% url 'edit_album' m.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete' m.id %}" class="btn btn-warning  btn-sm">Delete</a></td>
+            </tr>   
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

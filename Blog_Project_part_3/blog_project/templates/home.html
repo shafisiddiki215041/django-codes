@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="d-flex flex-wrap align-items-center p-5 pt-3 ">
+    <div class="col-6 ">
+        <h1>Welcome to Django Blog</h1>
+        <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
+            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+            dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un
+            libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+            documentos electrónicos,</p>
+    </div>
+    <div class="col-3">
+        <img style="width: 500px;" src="{% static 'header.jpeg' %}" alt="" srcset="">
+    </div>
+</div>
+
+
+<div class="d-flex flex-wrap px-3 p-3">
+    <div class="col-2 card p-2">
+        <h5>All Categories</h5>
+        {% for cate in category %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="category" id="{{cate.id}}" value="option{{cate.id}}"
+                unchecked>
+            <label class="form-check-label" for="{{cate.id}}">
+                <a class="text-decoration-none text-dark"
+                    href="{% url 'categories_wise_show' cate.slug %}">{{cate.name}}</a>
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-10 p-3">
+        <h4 class="">{{post | length}} result found</h4>
+        <div class="d-flex flex-wrap  pt-5">
+            {% for p in post %}
+            <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="card mx-2">
+                    <img src="{{p.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="text-decoration-none text-dark" href="{% url 'details_post' p.id %}">{{p.title}}</a></h5>
+                        <p>{{ p.content|truncatewords:10 }}</p>
+                        <p>Author: {{p.author.first_name}} {{p.author.last_name}}</p>
+                        <p>Category:
+                            {% for cat in p.category.all %}
+                            <button class="btn btn-danger btn-sm m-1" disabled>{{cat.name}}</button>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

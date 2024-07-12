@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Homepage not working yet....</h1>
+
+
+<div class="d-flex card m-2 justify-content-center w-100 align-items-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Musician Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Album Rating</th>
+                <th scope="col">Instrument Type</th>
+                <th scope="col">Album Name</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in albums %}
+            <tr>
+                <td>{{m.musician.id}}</td>
+                <td>{{m.musician.First_name}}</td>
+                <td>{{m.musician.Email}}</td>
+                <td>{{m.rating}}</td>
+                <td>{{m.musician.favo_instrument}}</td>
+                <td>{{m.album_name}}</td>
+                <td>{{m.Release_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
