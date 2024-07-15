@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="d-flex flex-wrap align-items-center justify-content-around p-5 pt-3 ">
+    <div class="col-5 text-center">
+        <h1>Delightful Car Garage</h1>
+        <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
+            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+            dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un
+            libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+            documentos electrónicos,</p>
+    </div>
+    <div class="col-6">
+        <img style="width: 600px;" src="{% static 'car.jpg' %}" alt="..." srcset="">
+    </div>
+</div>
+
+<div class="card">
+    <h1>---All Brands---</h1>
+    <div class='d-flex flex-wrap p-2  m-2'>
+
+        {% for its in brands %}
+        <a class="btn btn-secondary  mx-2" href="{% url 'name_wise_show' its.slug %}">{{its.name}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="col-10 p-3">
+    <h4 class="">{{cars | length}} result found</h4>
+    <div class="d-flex flex-wrap  pt-5">
+        {% for p in cars %}
+        <div class="col-sm-3 mb-3 mb-sm-0">
+            <div class="card mx-2">
+                <img src="{{p.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><a class="text-decoration-none text-dark" href="">{{p.car_name}}</a></h5>
+                    <p><strong>Price:</strong> {{ p.car_price }}</p>
+                    <p>Brand of {{ p.brand.name }}</p>
+
+                    <a class="btn btn-warning text-center" href="{% url 'details' p.id %}">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
